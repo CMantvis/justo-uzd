@@ -9,16 +9,49 @@ export const CharacterProvider = props => {
             "name": "Luke Skywalker",
             "birth_year": "19BBY",
             "gender": "male",
+            "planet": "baba"
         },
         {
             "name": "john seena",
             "birth_year": "18BBY",
             "gender": "male",
+            "planet": "baba"
         },
         {
             "name": "davy johns",
             "birth_year": "19BBY",
             "gender": "male",
+            "planet": "baba"
+        },
+        {
+            "name": "davy johns",
+            "birth_year": "19BBY",
+            "gender": "male",
+            "planet": "baba"
+        },
+        {
+            "name": "davy johns",
+            "birth_year": "19BBY",
+            "gender": "male",
+            "planet": "baba"
+        },
+        {
+            "name": "davy johns",
+            "birth_year": "19BBY",
+            "gender": "male",
+            "planet": "baba"
+        },
+        {
+            "name": "davy johns",
+            "birth_year": "19BBY",
+            "gender": "male",
+            "planet": "baba"
+        },
+        {
+            "name": "davy johns",
+            "birth_year": "19BBY",
+            "gender": "male",
+            "planet": "baba"
         },
     ];
 
@@ -32,7 +65,8 @@ export const CharacterProvider = props => {
     //     let person = {
     //         name: "",
     //         birth_year: "",
-    //         gender: ""
+    //         gender: "",
+    //         planet: ""
     //     };
 
     //     function getDetail(apiURL) {
@@ -41,18 +75,35 @@ export const CharacterProvider = props => {
     //         });
     //     };
 
-    //     function showDetail(data) {
-    //         for (let i = 0; i < data.results.length; i++) {
-    //             person.name = data.results[i].name;
-    //             person.birth_year = data.results[i].birth_year;
-    //             person.gender = data.results[i].gender;
+    //     function getPlanet(url,name, birth_year,gender) {
+    //         return axios.get(url)
+    //         .then(rez => {
+    //             let homeworld = rez.data.name;
+    //             console.log(rez.data.name)
+    //             person.planet = homeworld;
+    //             person.name = name;
+    //             person.birth_year = birth_year;
+    //             person.gender = gender;
+
     //             persons.push(person);
-                
+
     //             person = {
     //                 name: "",
     //                 birth_year: "",
-    //                 gender: ""
+    //                 gender: "",
+    //                 planet: ""
     //             };
+    //         })
+    //     }
+
+    //     function showDetail(data) {
+    //         for (let i = 0; i < data.results.length; i++) {
+    //             let name = data.results[i].name;
+    //             let birth_year = data.results[i].birth_year;
+    //             let gender = data.results[i].gender;
+    //             let homeworldUrl = data.results[i].homeworld;
+    //             getPlanet(homeworldUrl, name, birth_year, gender);
+    //             // persons.push(person);
     //         }
 
     //         setCharacters([...characters, ...persons]);
@@ -62,10 +113,13 @@ export const CharacterProvider = props => {
     //         }
     //     };
 
+    //     // axios.get("https://swapi.dev/api/planets/1/").then( rez => console.log(rez.data.name))
+
     //     getDetail("https://swapi.dev/api/people/");
     //     setLoading(false);
     // }, []);
 
+        console.log(characters);
     return (
         <CharacterContext.Provider value={{value: [characters, setCharacters], value2: [loading,setLoading]}}>
             {props.children}

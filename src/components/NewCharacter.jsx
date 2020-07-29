@@ -92,7 +92,7 @@ export default function NewCharacter() {
                 label="Gender"
                 error={errors.gender}
                 />
-                <button>Add</button>
+                <button className="btn btn-add btn-large">Add</button>
             </form>
         </div>
     )

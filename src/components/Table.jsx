@@ -8,6 +8,7 @@ export default function Table({headerLabels, characters, onDelete}) {
                     <th>{headerLabels.name}</th>
                     <th>{headerLabels.birth_year}</th>
                     <th>{headerLabels.gender}</th>
+                    <th>{headerLabels.planet}</th>
                 </tr>
             </thead>
 
@@ -18,6 +19,7 @@ export default function Table({headerLabels, characters, onDelete}) {
                             <td>{person.name}</td>
                             <td>{person.birth_year}</td>
                             <td>{person.gender}</td>
+                            <td>{person.planet}</td>
                             <td><button className="btn btn-danger" onClick={() => onDelete(person.name)}>Delete</button></td>
                         </tr>
                     ))

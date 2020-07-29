@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, Switch } from "react-router-dom";
 import {CharacterProvider} from "./context/CharacterContext";
-
+import './App.css';
 import Characters from './components/Characters';
 import FakeNavBar from "./components/FakeNavBar";
 import NewCharacter from './components/NewCharacter';

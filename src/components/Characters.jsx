@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-
+import { Link } from "react-router-dom";
 import {CharacterContext} from "../context/CharacterContext";
 import Table from "./Table";
 import SearchInput from './Input';
-import { Link } from "react-router-dom";
+import Pagination from './Pagination';
 
 export default function Characters() {
 
@@ -12,23 +12,41 @@ export default function Characters() {
     const [loading, setLoading] = value2;
     const [searchQuery, setSearchQuery] = useState("");
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize, setPageSize] = useState(3);
+
     const labels = {
         name: "name",
         birth_year: "birth year",
-        gender: "gender"
+        gender: "gender",
+        planet: "Homeworld"
     };
+
+
+    
+    // console.log(indexOfLastChar)
+    // console.log(indexOfFirstChar)
+    // console.log(characters)
+    // console.log(currentChar)
 
     const handleDelete = name => {
         setCharacters([...characters.filter(character => character.name !== name)]);
     };
 
-    console.log(characters.length);
-
     const handleSearch = query => {
         setSearchQuery(query);
+    };
+
+    const handlePageChange = page => {
+        console.log(page)
+        setCurrentPage(page)
     }
 
-    const getSearchedData = () => {
+    const getPagedData = () => {
+        
+        const indexOfLastChar = currentPage * pageSize;
+        const indexOfFirstChar = indexOfLastChar - pageSize;
+
         let filtered = characters;
         if (searchQuery) {
             filtered = characters.filter(obj => {
@@ -37,16 +55,18 @@ export default function Characters() {
                 })
             });
         }
-        return filtered
+        return filtered.slice(indexOfFirstChar, indexOfLastChar);
     }
+
+    const filteredCharacters = getPagedData();
 
     return (
         <div className="row">
             <div className="col-10">
+                <p>{filteredCharacters.length}</p>
                 <Link
                     to="/add"
-                    className="btn btn-primary"
-                    style={{ marginBottom: 20 }}
+                    className="btn btn-add"
                 >
                     New Character
           </Link>
@@ -62,11 +82,20 @@ export default function Characters() {
                 loading? <div>Content is loading </div>:
                 <Table
                 headerLabels={labels}
-                characters={getSearchedData()}
+                characters={filteredCharacters}
                 // characters={characters}
                 onDelete={handleDelete}
             />
             }
+
+                <Pagination 
+                totalCharacters={characters.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+                />
+            
+
             </div>
         </div>
     )
