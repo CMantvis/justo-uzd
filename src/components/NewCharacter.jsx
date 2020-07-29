@@ -11,6 +11,7 @@ export default function NewCharacter() {
     const [name,setName] = useState("");
     const [birthYear,setBirthYear] = useState("");
     const [gender,setGender] = useState("");
+    const [planet,setPlanet] = useState("");
     const [errors, setErrors] = useState({});
 
     const handleName = name => {
@@ -21,8 +22,12 @@ export default function NewCharacter() {
         setBirthYear(year);
     };
 
-    const handleGenre = gender => {
+    const handleGender = gender => {
         setGender(gender);
+    };
+
+    const handlePlanet = planet => {
+        setPlanet(planet);
     };
 
     const validate = () => {
@@ -40,8 +45,12 @@ export default function NewCharacter() {
             errors.gender = "Gender is required";
         }
 
+        if (planet.trim() === "") {
+            errors.planet = "Planet is required";
+        }
+
         return Object.keys(errors).length === 0 ? null : errors;
-    }
+    };
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -58,11 +67,13 @@ export default function NewCharacter() {
         const character = {
             name,
             birth_year: birthYear,
-            gender
-        }
-        setCharacters([...characters, character])
+            gender,
+            planet
+        };
+
+        setCharacters([...characters, character]);
         history.push("/characters");
-    }
+    };
 
     return (
         <div>
@@ -87,10 +98,18 @@ export default function NewCharacter() {
                 <Input 
                 name="gender"
                 placeholder="Characters gender"
-                onChange={handleGenre}
+                onChange={handleGender}
                 value={gender}
                 label="Gender"
                 error={errors.gender}
+                />
+                <Input
+                name="planet"
+                placeholder="Characters home planet"
+                onChange={handlePlanet}
+                value={planet}
+                label="Planet"
+                error={errors.planet}
                 />
                 <button className="btn btn-add btn-large">Add</button>
             </form>

@@ -32,7 +32,7 @@ th {
 
 /* navbar */
 
-nav {
+.navbar{
     background-color: #222121;
     margin-bottom: 2rem;
 }
@@ -56,4 +56,26 @@ nav {
 
 .btn {
     color: #292727;
+}
+
+ /* pagination */
+ul .pagination {
+    background: red;
+}
+
+.page-link {
+    color: #fff;
+    background: #222121;
+    border: 1px solid rgb(156, 154, 9);
+}
+
+.page-item.active .page-link {
+    background: rgb(230, 226, 5);
+    color: black;
+}
+
+.page-link:hover {
+    cursor: pointer;
+    background: rgb(230, 226, 5);
+    color: black;
 }

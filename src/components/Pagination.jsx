@@ -1,16 +1,15 @@
 import React from 'react'
+import _ from "lodash";
 
-export default function paginate({pageSize, totalCharacters, onPageChange, currentPage}) {
-
-    const pageNumbers = [];
-    for(let i = 1; i <= Math.ceil(totalCharacters/ pageSize); i++) {
-        pageNumbers.push(i);
-    }
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
+    const pagesCount = Math.ceil(itemsCount / pageSize);
+    if (pagesCount === 1) return null;
+    const pages = _.range(1, pagesCount + 1);
 
     return (
         <nav>
           <ul className="pagination">
-            {pageNumbers.map(page => (
+            {pages.map(page => (
               <li
                 key={page}
                 className={page === currentPage ? "page-item active" : "page-item"}
@@ -24,3 +23,5 @@ export default function paginate({pageSize, totalCharacters, onPageChange, curre
         </nav>
       );
     };
+
+    export default Pagination;
