@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SearchInput({value,onChange,placeholder,name,label}) {
+export default function SearchInput({value,onChange,placeholder,name,label, error}) {
     return (
         <div className="form-group">
             <label htmlFor={name}>{label}</label>
@@ -11,6 +11,7 @@ export default function SearchInput({value,onChange,placeholder,name,label}) {
         value={value}
         onChange={ e => onChange(e.target.value)}
         />
+        { error && <div className="alert alert-danger">{error}</div>}
         </div>
     )
 }

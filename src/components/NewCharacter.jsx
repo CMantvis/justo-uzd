@@ -11,6 +11,7 @@ export default function NewCharacter() {
     const [name,setName] = useState("");
     const [birthYear,setBirthYear] = useState("");
     const [gender,setGender] = useState("");
+    const [errors, setErrors] = useState({});
 
     const handleName = name => {
         setName(name);
@@ -24,8 +25,36 @@ export default function NewCharacter() {
         setGender(gender);
     };
 
+    const validate = () => {
+        const errors = {};
+
+        if (name.trim() === "") {
+            errors.name ="Name is required.";
+        }
+
+        if (birthYear.trim() === "") {
+            errors.birthYear = "Birth year is required";
+        }
+
+        if (gender.trim() === "") {
+            errors.gender = "Gender is required";
+        }
+
+        return Object.keys(errors).length === 0 ? null : errors;
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
+        const errors = validate();
+
+        if (errors === null) {
+            setErrors({});
+        } else {
+            setErrors(errors);
+        }
+
+        if (errors) return
+
         const character = {
             name,
             birth_year: birthYear,
@@ -45,6 +74,7 @@ export default function NewCharacter() {
                     onChange={handleName}
                     value={name}
                     label="Name"
+                    error={errors.name}
                 />
                 <Input 
                 name="birthYear"
@@ -52,6 +82,7 @@ export default function NewCharacter() {
                 onChange={handleBirthYear}
                 value={birthYear}
                 label="Birth year"
+                error={errors.birthYear}
                 />
                 <Input 
                 name="gender"
@@ -59,6 +90,7 @@ export default function NewCharacter() {
                 onChange={handleGenre}
                 value={gender}
                 label="Gender"
+                error={errors.gender}
                 />
                 <button>Add</button>
             </form>
