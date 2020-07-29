@@ -22,7 +22,7 @@ export const CharacterProvider = props => {
                 showDetail(response.data);
             });
         };
-
+        
         function getPlanet(url,name, birth_year,gender) {
             return axios.get(url)
             .then(rez => {

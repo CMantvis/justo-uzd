@@ -79,3 +79,8 @@ ul .pagination {
     background: rgb(230, 226, 5);
     color: black;
 }
+
+.loading {
+    margin: 200px auto;
+    text-align: center;
+}

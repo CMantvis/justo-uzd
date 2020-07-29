@@ -71,7 +71,7 @@ export default function Characters() {
                 />
 
                 {
-                    loading ? <div>Content is loading </div> :
+                    loading ? <h1 className="loading">Content is loading </h1> :
                         <Table
                             headerLabels={labels}
                             characters={filteredCharacters}
